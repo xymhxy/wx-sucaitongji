@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+
 <title>微信素材资源·点击统计分析</title>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
@@ -774,7 +776,7 @@
 <!-- 图片预览 -->
 <div class="img-preview-overlay" id="imgPreviewOverlay" onclick="closeImagePreview()">
   <button class="img-preview-close" onclick="closeImagePreview()">&times;</button>
-  <img id="imgPreviewImg" alt="预览" onclick="event.stopPropagation()" />
+  <img id="imgPreviewImg" referrerpolicy="no-referrer" alt="预览" onclick="event.stopPropagation()" />
 </div>
 
 <!-- 更新日志弹窗 -->
@@ -1919,11 +1921,12 @@ function renderCellValue(value, isForTitle) {
   // 检测是否为图片URL
   if (isImageUrl(value)) {
     const escaped = escapeHtml(value);
-    return {
-      html: `<div class="img-thumb-wrapper">
-        <img class="img-thumb" src="${escaped}" alt="图片" loading="lazy"
-             onclick="openImagePreview('${escaped.replace(/'/g, "\\'")}')"
-             onerror="this.classList.add('img-error')" />
+return {
+  html: `<div class="img-thumb-wrapper">
+    <img class="img-thumb" src="${escaped}" alt="图片" loading="lazy"
+         referrerpolicy="no-referrer"
+         onclick="openImagePreview('${escaped.replace(/'/g, "\\'")}')"
+         onerror="this.classList.add('img-error')" />
         <a class="img-link" href="${escaped}" target="_blank" title="${escaped}" onclick="event.stopPropagation()">
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
           查看原图
@@ -1967,3 +1970,4 @@ document.addEventListener('keydown', (e) => {
 </script>
 </body>
 </html>
+
